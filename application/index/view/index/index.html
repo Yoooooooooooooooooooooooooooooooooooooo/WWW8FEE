@@ -10,12 +10,12 @@
 
 		<!-- 外部css 顺序不可变 -->
 		<!-- 第三方自定义 -->
-		<link rel="stylesheet" href="__CSS__/bootstrap/bootstrap.css" />
+		{load href="__CSS__/bootstrap/bootstrap.css"}
 		<!-- 默认值 -->
-		<link rel="stylesheet" href="__CSS__/main.css" />
-		<link rel="stylesheet" href="__CSS__/8f_mobile.css" media="(max-width: 720px)" /><!-- mobile定制的css  响应式布局 -->
+		{load href="__CSS__/main.css"}
+		{load href="__CSS__/8f_mobile.css" media="(max-width: 720px)"}<!-- mobile定制的css  响应式布局 -->
 		<!-- 内部自定义 -->
-		<link rel="stylesheet" href="__CSS__/cheats.css" />
+		{load href="__CSS__/cheats.css"}
 
 		<!-- 定义在页面上的css -->
 		<style type="text/css">
@@ -124,38 +124,38 @@
 		</style>
 		
 		<!-- javascript -->
-		<script type="text/javascript" src="__JS__/jquery-3.3.1.min.js" charset="UTF-8"></script>
-		<script type="text/javascript" src="__JS__/bootstrap/bootstrap.js"></script>
-		<script type="text/javascript" src="__JS__/cheats.js"></script>
-		<script type="text/javascript" src="__JS__/background_slider.js"></script>
+		{load href="__JS__/jquery-3.3.1.min.js"}
+		{load href="__JS__/bootstrap/bootstrap.js"}
+		{load href="__JS__/cheats.js"}
+		{load href="__JS__/background_slider.js"}
 		<script type="text/javascript">
 			
 			/* https://i.pximg.net/img-master/img/2013/07/08/01/50/25/36919122_p0_master1200.jpg */
-			var wallpapers = ["__IMAGE__/36919122_p0_master1200.jpg",
-								"__IMAGE__/16848987_p0_master1200.jpg",
-								"__IMAGE__/15126670_p0_master1200.jpg",
-								"__IMAGE__/43409888_p0_master1200.jpg",
-								"__IMAGE__/37203249_p0_master1200.jpg",
-								"__IMAGE__/22600763_p0_master1200.jpg",
-								"__IMAGE__/31251762_p0_master1200.jpg",
-								"__IMAGE__/37016225_p0_master1200.jpg",
-								"__IMAGE__/47621790_p0_master1200.jpg",
-								"__IMAGE__/57080648_p0_master1200.jpg",
-								"__IMAGE__/29601755_p0_master1200.jpg",
-								"__IMAGE__/24958388_p0_master1200.jpg",
-								"__IMAGE__/40191798_p0_master1200.jpg",
-								"__IMAGE__/11333874_p0_master1200.jpg",
-								"__IMAGE__/8913281_p0_master1200.jpg",
-								"__IMAGE__/35231457_p0_master1200.jpg",
-								"__IMAGE__/38631998_p0_master1200.jpg",
-								"__IMAGE__/35019721_p0_master1200.jpg",
-								"__IMAGE__/49281286_p0_master1200.jpg",
-								"__IMAGE__/26339586_p0_master1200.jpg",
-								"__IMAGE__/37602900_p0_master1200.jpg",
-								"__IMAGE__/22208183_p0_master1200.jpg",
-								"__IMAGE__/57196809_p0_master1200.jpg",
-								"__IMAGE__/34512986_p0_master1200.jpg",
-								"__IMAGE__/16983806_p0_master1200.jpg"];
+			var wallpapers = ["__IMAGES__/36919122_p0_master1200.jpg",
+								"__IMAGES__/16848987_p0_master1200.jpg",
+								"__IMAGES__/15126670_p0_master1200.jpg",
+								"__IMAGES__/43409888_p0_master1200.jpg",
+								"__IMAGES__/37203249_p0_master1200.jpg",
+								"__IMAGES__/22600763_p0_master1200.jpg",
+								"__IMAGES__/31251762_p0_master1200.jpg",
+								"__IMAGES__/37016225_p0_master1200.jpg",
+								"__IMAGES__/47621790_p0_master1200.jpg",
+								"__IMAGES__/57080648_p0_master1200.jpg",
+								"__IMAGES__/29601755_p0_master1200.jpg",
+								"__IMAGES__/24958388_p0_master1200.jpg",
+								"__IMAGES__/40191798_p0_master1200.jpg",
+								"__IMAGES__/11333874_p0_master1200.jpg",
+								"__IMAGES__/8913281_p0_master1200.jpg",
+								"__IMAGES__/35231457_p0_master1200.jpg",
+								"__IMAGES__/38631998_p0_master1200.jpg",
+								"__IMAGES__/35019721_p0_master1200.jpg",
+								"__IMAGES__/49281286_p0_master1200.jpg",
+								"__IMAGES__/26339586_p0_master1200.jpg",
+								"__IMAGES__/37602900_p0_master1200.jpg",
+								"__IMAGES__/22208183_p0_master1200.jpg",
+								"__IMAGES__/57196809_p0_master1200.jpg",
+								"__IMAGES__/34512986_p0_master1200.jpg",
+								"__IMAGES__/16983806_p0_master1200.jpg"];
 			$(function(){
 				load_wallpapers(wallpapers,"#wallpaper1","#wallpaper2");
 			});
