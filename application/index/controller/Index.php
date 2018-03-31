@@ -1,11 +1,11 @@
 <?php
 namespace app\index\controller;
 
+use app\common\controller\Base;
 use app\index\model\NaviSites;
-use think\Controller;
 use think\facade\View;
 
-class Index extends Controller
+class Index extends Base
 {
     public function index()
     {
@@ -15,7 +15,7 @@ class Index extends Controller
             ->order('sort', 'asc')
             ->select();
 //        return $this->display($content);//$this->view->display($content);  \think\facade\View::display($content);
-
+        View::assign('title', "不知道要叫什么的网站");
         View::assign('sites', $sites);
         return View::fetch();
     }
