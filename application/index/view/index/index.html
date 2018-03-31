@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" /><!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>不知道要叫什么的网站</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="bookmark" href="favicon.ico" />
+
+		<!-- 外部css 顺序不可变 -->
+		<!-- 第三方自定义 -->
+		<link rel="stylesheet" href="__CSS__/bootstrap/bootstrap.css" />
+		<!-- 默认值 -->
+		<link rel="stylesheet" href="__CSS__/main.css" />
+		<link rel="stylesheet" href="__CSS__/8f_mobile.css" media="(max-width: 720px)" /><!-- mobile定制的css  响应式布局 -->
+		<!-- 内部自定义 -->
+		<link rel="stylesheet" href="__CSS__/cheats.css" />
+
+		<!-- 定义在页面上的css -->
+		<style type="text/css">
+			body {
+				background: rgba(255,255,255,0); 
+				width: 100%; 
+				height: 100%;
+				overflow: hidden;
+			}
+
+			.body {
+				width: 100%; 
+				height: 100%;
+				overflow: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			ul {
+			 	padding:0; 
+			 	margin:0; 
+			 	list-style: none; 
+			 	display: inline;
+			} 
+
+			header {
+				padding: 15px 10%;
+				background: #fff;
+			}
+
+			nav {
+				padding: 15px 200px; 
+				background: #fff; 
+				border-width: 1px;
+				border-style: solid none;
+				border-color: #ccc;
+				display: block;
+			}
+
+			nav a {
+				color:#88f;
+			}
+
+			nav a:hover {
+				color:#44f;
+				text-decoration: none;
+			}
+
+			main {
+				margin: 0 auto; 
+				padding: 15px;
+				background-color: rgba(255,255,255,0.9);
+				width: 80%; 
+				overflow: hidden;/* 防止子布局float背景会出问题 */
+			}
+
+			footer {
+				padding: 15px 10%;
+				background: #fff;
+			}
+
+			.wallpaper  {
+				width: 100%;
+				height: 100%;
+    			background: fixed;
+				background-size:cover;
+				position: absolute;
+				z-index: -1;
+			}
+
+			.nav-landscape {
+				padding: 15px; 
+				margin: 0;
+				list-style: none;
+				display: inline;
+			}
+
+			.wallpaper-from {
+				bottom: 2%; 
+				right: 2%; 
+				text-align: right;
+			}
+
+			/*固定定位*/
+			.fixed{
+				position: fixed;
+				top: -40px;
+				z-index: 99;
+			}
+		</style>
+
+		<style type="text/css" media="(max-width: 720px)">
+			nav {
+				padding: 15px 15px; 
+			}
+
+			.header-title {
+				font-size: 1.6em;
+			}
+
+			.wallpaper-from {
+				font-size: 0.7em;
+			}
+		</style>
+		
+		<!-- javascript -->
+		<script type="text/javascript" src="__JS__/jquery-3.3.1.min.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="__JS__/bootstrap/bootstrap.js"></script>
+		<script type="text/javascript" src="__JS__/cheats.js"></script>
+		<script type="text/javascript" src="__JS__/background_slider.js"></script>
+		<script type="text/javascript">
+			
+			/* https://i.pximg.net/img-master/img/2013/07/08/01/50/25/36919122_p0_master1200.jpg */
+			var wallpapers = ["__IMAGE__/36919122_p0_master1200.jpg",
+								"__IMAGE__/16848987_p0_master1200.jpg",
+								"__IMAGE__/15126670_p0_master1200.jpg",
+								"__IMAGE__/43409888_p0_master1200.jpg",
+								"__IMAGE__/37203249_p0_master1200.jpg",
+								"__IMAGE__/22600763_p0_master1200.jpg",
+								"__IMAGE__/31251762_p0_master1200.jpg",
+								"__IMAGE__/37016225_p0_master1200.jpg",
+								"__IMAGE__/47621790_p0_master1200.jpg",
+								"__IMAGE__/57080648_p0_master1200.jpg",
+								"__IMAGE__/29601755_p0_master1200.jpg",
+								"__IMAGE__/24958388_p0_master1200.jpg",
+								"__IMAGE__/40191798_p0_master1200.jpg",
+								"__IMAGE__/11333874_p0_master1200.jpg",
+								"__IMAGE__/8913281_p0_master1200.jpg",
+								"__IMAGE__/35231457_p0_master1200.jpg",
+								"__IMAGE__/38631998_p0_master1200.jpg",
+								"__IMAGE__/35019721_p0_master1200.jpg",
+								"__IMAGE__/49281286_p0_master1200.jpg",
+								"__IMAGE__/26339586_p0_master1200.jpg",
+								"__IMAGE__/37602900_p0_master1200.jpg",
+								"__IMAGE__/22208183_p0_master1200.jpg",
+								"__IMAGE__/57196809_p0_master1200.jpg",
+								"__IMAGE__/34512986_p0_master1200.jpg",
+								"__IMAGE__/16983806_p0_master1200.jpg"];
+			$(function(){
+				load_wallpapers(wallpapers,"#wallpaper1","#wallpaper2");
+			});
+
+            //标示动画是否执行
+            var isAnimated = false;
+
+            $(document).ready(function(){
+
+                //on() 添加监听  "所要监听的事件" function(){}当监听到事件后执行的方法
+                $(window).on("scroll",function(){
+                    //this代表window scrollTop()向上滑动的距离
+                    if($(this).scrollTop() > 190){
+                        $(".nav").addClass("fixed");
+                        //如果动画执行过
+                        if(!isAnimated){
+                            $(".nav").css("top","-40px");//每次要执行动画之前都将top值设为-40px
+                            $(".nav").animate({"top":"0px"},1000);
+                            isAnimated = true;
+                        }
+                    }else{
+                        isAnimated = false;
+                        $(".nav").removeClass("fixed");
+                    }
+                })
+
+            });
+		</script>
+	</head>
+	<body>
+		<div class="wallpaper" id="wallpaper1"></div>
+		<div class="wallpaper" id="wallpaper2"></div>
+		<div class="body">
+			<header>
+				<h1 class="header-title">Welcome to FFFFFFFF</h1>（暂时仅支持Chrome）
+				<div class="banner"></div>
+			</header>
+
+			<nav class=".nav">
+				<ul>
+					<li class="nav-landscape"><a href="http://s.8f.ee">搜索</a></li>
+					<li class="nav-landscape"><a href="http://g.8f.ee">游戏</a></li>
+					<li class="nav-landscape"><a href="http://manage.8f.ee">管理</a></li>
+				</ul>
+			</nav>
+
+			<main>
+				<div style="padding: 15px;">
+					<p><a href="http://app.4399.cn/index-a4399Download.html">下载4399游戏盒（安卓版）</a></p>
+					<p>站长邮箱：<a href="mailto:L@8f.ee">L@8f.ee</a></p>
+					<p><a href="home/tetris.html">来玩玩俄罗斯方块（开源体验版吧）</a></p>
+				</div>
+				
+				<!-- 流动布局 根据不同屏幕分辨率展示不同的列数 -->
+				<div style="padding: 15px;">
+					<!-- 默认为十二列 参数为每个单元格占的列数 -->
+					{volist name="sites" id="list"}
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2" style="padding:7px">
+						{if $list.status == 2}
+							<div id="cheats_show_1" title="魂斗罗">用秘籍显示{$list.name}</div><div id="cheats_hide_1"><a href="{$list.site}">{$list.name}</a></div>
+						{else /}
+							<a href="{$list.site}">{$list.name}</a>
+						{/if}
+					</div>
+					{/volist}
+				</div>
+			</main>
+
+			<footer>
+				<div class="wallpaper-from">图源：<a href="http://www.pixiv.net" target="_black">P站</a></div>
+			</footer>
+		</div>
+	</body>
+</html>
