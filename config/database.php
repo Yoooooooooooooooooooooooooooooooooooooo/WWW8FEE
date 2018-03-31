@@ -28,7 +28,7 @@ return [
     'params'          => [],
     // 数据库编码默认采用utf8
     'charset'         => 'utf8',
-    // 数据库表前缀
+    // 数据库表前缀f_
     'prefix'          => '8',
     // 数据库调试模式
     'debug'           => true,
