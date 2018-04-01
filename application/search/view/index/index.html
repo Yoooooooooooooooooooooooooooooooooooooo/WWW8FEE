@@ -5,15 +5,10 @@
 	<script type="text/javascript">
 		function rewrite_search(_form){
 			var word = _form.w.value;
-			if(word == "")
+			if(word != "")
 			{
-				window.location.href = "";
+                window.location.href = "w/"+ encodeURIComponent(word);
 			}
-			else
-			{
-				window.location.href = "w/"+ encodeURIComponent(word);
-			}
-			return url;
 		}
 
 		$(document).keyup(function(event){
