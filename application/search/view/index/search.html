@@ -1,0 +1,124 @@
+{extend name="common@base"}
+{block name="import"}
+	{load href="__CSS__/search/search.css"}
+	<script type="text/javascript">
+		function rewrite_search(_form){
+			var word = _form.w.value;
+			if(word == "")
+			{
+				window.location.href = "";
+			}
+			else
+			{
+				window.location.href = encodeURIComponent(word);
+			}
+			return url;
+		}
+
+		$(document).keyup(function(event){
+			if(event.keyCode == 13 || event.which == 13)
+			{
+				document.getElementById("btn_search").click();
+			}
+		})
+
+		function getData(){
+			var word = $.query.get("w");
+		}
+
+
+		/* 自动适配高度 */
+		function changeFrameHeight(){
+				var iframes= document.getElementsByClassName('iframe-page');
+				for (var i = 0; i < iframes.length; i++) {
+					var iframe = iframes[i];
+					iframe.height=document.documentElement.clientHeight - 76;
+				 }
+			}
+		window.onresize=function(){
+			 changeFrameHeight();
+		}
+
+		/* 显示隐藏模块 */
+		var hide_left_click = false;
+		var hide_right_click = false;
+		function hide_iframe_left()
+		{
+			if(hide_left_click)
+			{
+				iframe_default();
+				hide_left_click = false;
+			}
+			else
+			{
+				document.getElementsByClassName('iframe-page')[0].width=0;
+				document.getElementsByClassName('iframe-page')[1].width='100%';
+				document.getElementById('btn_hide_left').value='显示左边';
+				document.getElementById('btn_hide_right').value='隐藏右边';
+				hide_left_click = true;
+				hide_right_click = false;
+			}
+		}
+		function hide_iframe_right()
+		{
+			if(hide_right_click)
+			{
+				iframe_default();
+				hide_right_click = false;
+			}
+			else
+			{
+				document.getElementsByClassName('iframe-page')[0].width='100%';
+				document.getElementsByClassName('iframe-page')[1].width=0;
+				document.getElementById('btn_hide_left').value='隐藏左边';
+				document.getElementById('btn_hide_right').value='显示右边';
+				hide_left_click = false;
+				hide_right_click = true;
+			}
+		}
+		function iframe_default()
+		{
+			document.getElementsByClassName('iframe-page')[0].width='50%';
+			document.getElementsByClassName('iframe-page')[1].width='50%';
+			document.getElementById('btn_hide_left').value='隐藏左边';
+			document.getElementById('btn_hide_right').value='隐藏右边';
+		}
+	</script>
+{/block}
+{block name="body"}
+	<main>
+		<form class="search-block" action="" method="get" onkeydown="if(event.keyCode==13 || event.which == 13){return false;}">
+			<input class="search-input" type="text" name="w" placeholder="请输入您要搜索的内容！" value="{$word}"/>
+			<input class="search-button" type="button" value="搜索" id="btn_search" onclick="rewrite_search(this.form)" />
+		</form>
+		<div style="text-align: left; width: 50%; float:left;">
+			<input type="button" id="btn_hide_left" value="隐藏左边" class="btn_hide" onclick="hide_iframe_left()">
+			<select>
+				<option value="baidu">百度</option><!-- http://www.baidu.com/s?wd= -->
+				<option value="google">谷歌</option>
+				<option value="youdao">必应</option><!-- http://cn.bing.com/search?q= -->
+				<option value="sogou">搜狗</option><!-- https://www.sogou.com/web?query= -->
+				<option value="360">360</option><!-- https://www.so.com/s?q= -->
+				<option value="yahoo">雅虎</option><!-- https://search.yahoo.com/search?p= -->
+				<option value="acfun">ACFUN</option><!-- http://www.acfun.cn/search/?#query= -->
+			</select>
+		</div>
+		<div style="text-align: right; width: 50%; float:right;">
+			<select>
+				<option value="baidu">百度</option>
+				<option value="google">谷歌</option>
+			</select>
+			<input type="button" id="btn_hide_right" value="隐藏右边" class="btn_hide" onclick="hide_iframe_right()">
+		</div>
+		<html>
+		<head>
+			<meta charset="UTF-8" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		</head>
+		<div style="clear: both">
+			<iframe class="iframe-page" src="http://www.baidu.com/s?wd={$word}" width="50%" height="100%" onload="changeFrameHeight()" frameborder="0" border="0" framespacing="0"></iframe>
+			<iframe class="iframe-page" src="https://www.sogou.com/web?query={$word}" width="50%" height="100%" onload="changeFrameHeight()" frameborder="0" border="0" framespacing="0"></iframe>
+		</div>
+		</html>
+	</main>
+{/block}

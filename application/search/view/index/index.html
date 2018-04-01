@@ -1,0 +1,47 @@
+{extend name="common@base"}
+{block name="import"}
+	{load href="__CSS__/search/index.css"}
+	<!-- javascript -->
+	<script type="text/javascript">
+		function rewrite_search(_form){
+			var word = _form.w.value;
+			if(word == "")
+			{
+				window.location.href = "";
+			}
+			else
+			{
+				window.location.href = "w/"+ encodeURIComponent(word);
+			}
+			return url;
+		}
+
+		$(document).keyup(function(event){
+			if(event.keyCode == 13 || event.which == 13)
+			{
+				document.getElementById("btn_search").click();
+			}
+		})
+	</script>
+{/block}
+{block name="body"}
+	<main>
+		<h1 style="text-align: center;">这里是LOGO</h1>
+		<form class="search-block" method="get" onkeydown="if(event.keyCode==13 || event.which == 13){return false;}">
+			<input class="search-input" type="text" name="w" placeholder="请输入您要搜索的内容！"/>
+			<input class="search-button" id="btn_search" type="button" value="搜索" onclick="rewrite_search(this.form)" />
+			<div style="width: 580px; margin-left: auto; margin-right: auto">
+					<select style="float:left; width: 200px;">
+						<option value="baidu">百度</option><!-- http://www.baidu.com/s?wd= -->
+						<option value="google">谷歌</option>
+						<option value="youdao">必应</option><!-- http://cn.bing.com/search?q= -->
+						<option value="sogou">搜狗</option><!-- https://www.sogou.com/web?query= -->
+						<option value="360">360</option><!-- https://www.so.com/s?q= -->
+						<option value="yahoo">雅虎</option><!-- https://search.yahoo.com/search?p= -->
+						<option value="acfun">ACFUN</option><!-- http://www.acfun.cn/search/?#query= -->
+					</select>
+					<select style="float:right; width: 200px; margin-right: 80px"></select>
+			</div>
+		</form>
+	</main>
+{/block}

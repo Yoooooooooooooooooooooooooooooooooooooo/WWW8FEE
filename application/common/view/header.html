@@ -8,15 +8,9 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="bookmark" href="favicon.ico" />
 
-    <!-- 外部css 顺序不可变 -->
-    <!-- 第三方自定义 -->
-    {load href="__CSS__/bootstrap/bootstrap.css"}
-    <!-- 默认值 -->
-    {load href="__CSS__/main.css"}
-    {load href="__CSS__/8f_mobile.css" media="(max-width: 720px)"}<!-- mobile定制的css  响应式布局 -->
+    {load href="__CSS__/bootstrap.min.css,__CSS__/main.css"}
+    <!-- mobile定制的css  响应式布局 -->
+    {load href="__CSS__/mobile.css" media="(max-width: 720px)"}
 
     <!-- javascript -->
-    {load href="__JS__/jquery-3.3.1.min.js"}
-    {load href="__JS__/bootstrap/bootstrap.js"}
-    {load href="__JS__/cheats.js"}
-    {load href="__JS__/background_slider.js"}
+    {load href="__JS__/jquery-3.3.1.min.js,__JS__/bootstrap.min.js"}

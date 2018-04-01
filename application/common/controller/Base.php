@@ -16,6 +16,11 @@ use think\Controller;
 
 class Base extends Controller
 {
+    public function _empty($s)
+    {
+        $this->redirect("/");
+    }
+
     protected function initialize()
     {}
 }
