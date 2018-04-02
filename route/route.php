@@ -10,8 +10,8 @@
 // +----------------------------------------------------------------------
 
 Route::domain('s', function () {
-    Route::rule('w/:word', 'index/search');
-    Route::bind('search/index');
+    Route::rule('w/:word', 'search/index/search')->pattern(['word' => '.*']);
+    Route::bind('search');
 });
 
 Route::domain('manage', 'manage/index');

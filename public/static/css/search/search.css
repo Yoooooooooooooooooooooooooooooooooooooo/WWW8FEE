@@ -1,0 +1,36 @@
+html
+{
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.search-block {
+    padding: 15px;
+    margin: auto;
+    display: block;
+}
+
+.search-input {
+    width: 500px;
+    height: 20px;
+}
+
+.search-button {
+    width: 80px;
+    height: 26px;
+}
+
+.iframe-page {
+    border: 0;
+    float: left;
+    border: 0;
+}
+
+.btn_hide
+{
+    width: 66px;
+    height: 20px;
+}

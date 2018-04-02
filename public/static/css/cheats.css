@@ -1,0 +1,7 @@
+[id^="cheats_show_"] {
+	display: inline;
+} 
+
+[id^="cheats_hide_"]  {
+	display: none;
+} 
