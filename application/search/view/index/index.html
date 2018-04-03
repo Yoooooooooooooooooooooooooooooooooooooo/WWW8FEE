@@ -7,7 +7,7 @@
 			var word = _form.w.value;
 			if(word != "")
 			{
-                window.location.href = "/w/" + $('#select_left').val() + "/" + $('#select_right').val() + "/" + encodeURIComponent(word);
+                window.location.href = "/w/" + $('#select_left').val() + "/" + $('#select_right').val() + "/" + encodeURIComponent(encodeURIComponent(word));
             }
 		}
 

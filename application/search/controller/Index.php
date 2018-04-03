@@ -27,13 +27,15 @@ class Index extends Base
         return View::fetch();
     }
 
-    public function search($id_left="0",$id_right="1",$word="")
+    public function search($id_left=0,$id_right=0,$word="")
     {
         $sites = SearchSite::field('id,name,url')->order('sort', 'asc')->select();
         View::assign("sites", $sites);
         View::assign("word", $word);
-        View::assign("url_left", SearchSite::field('url')->where('id',$id_left)->find()['url']);
-        View::assign("url_right", SearchSite::field('url')->where('id',$id_right)->find()['url']);
+        $left_url = SearchSite::field('url')->where('id',$id_left)->find()['url'];
+        $right_url = SearchSite::field('url')->where('id',$id_right)->find()['url'];
+        View::assign("url_left", empty($left_url) ? $sites[0]['url'] : $left_url);
+        View::assign("url_right", empty($right_url) ? $sites[1]['url'] : $right_url);
         View::assign("title","这是一个搜索页");
         return View::fetch();
     }

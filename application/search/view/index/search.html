@@ -4,7 +4,7 @@
 	<script type="text/javascript">
 		function rewrite_search(_form){
 			var word = _form.w.value;
-			window.location.href = "http://"+window.location.host + "/w/"+ $('#select_left').val().split('|')[0] + "/" + $('#select_right').val().split('|')[0] + "/" + encodeURIComponent(word);
+			window.location.href = window.location.protocol + "//" + window.location.host + "/w/"+ $('#select_left').val().split('|')[0] + "/" + $('#select_right').val().split('|')[0] + "/" + encodeURIComponent(encodeURIComponent(word));
 		}
 
 		$(document).keyup(function(event){
@@ -13,11 +13,6 @@
 				document.getElementById("btn_search").click();
 			}
 		})
-
-		function getData(){
-			var word = $.query.get("w");
-		}
-
 
 		/* 自动适配高度 */
 		function changeFrameHeight(){
@@ -84,12 +79,16 @@
 		{
             $('#iframe_right').attr("src", $('#select_right').val().split('|')[1]+"{$word}");
 		}
+
+        $(function(){
+            $('#search-input').val(decodeURIComponent("{$word}"));
+        });
 	</script>
 {/block}
 {block name="body"}
 	<main>
 		<form class="search-block" action="" method="get" onkeydown="if(event.keyCode==13 || event.which == 13){return false;}">
-			<input class="search-input" type="text" name="w" placeholder="请输入您要搜索的内容！" value="{$word}"/>
+			<input class="search-input" type="text" name="w" id="search-input" placeholder="请输入您要搜索的内容！"/>
 			<input class="search-button" type="button" value="搜索" id="btn_search" onclick="rewrite_search(this.form)" />
 		</form>
 		<div style="text-align: left; width: 50%; float:left;">
