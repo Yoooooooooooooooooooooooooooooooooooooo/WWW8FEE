@@ -4,15 +4,7 @@
 	<script type="text/javascript">
 		function rewrite_search(_form){
 			var word = _form.w.value;
-			if(word == "")
-			{
-				window.location.href = "";
-			}
-			else
-			{
-				window.location.href = encodeURIComponent(word);
-			}
-			return url;
+			window.location.href = "http://"+window.location.host + "/w/"+ $('#select_left').val().split('|')[0] + "/" + $('#select_right').val().split('|')[0] + "/" + encodeURIComponent(word);
 		}
 
 		$(document).keyup(function(event){
@@ -83,6 +75,15 @@
 			document.getElementById('btn_hide_left').value='隐藏左边';
 			document.getElementById('btn_hide_right').value='隐藏右边';
 		}
+
+		function select_left_onchange()
+		{
+            $('#iframe_left').attr("src", $('#select_left').val().split('|')[1]+"{$word}");
+		}
+		function select_right_onchange()
+		{
+            $('#iframe_right').attr("src", $('#select_right').val().split('|')[1]+"{$word}");
+		}
 	</script>
 {/block}
 {block name="body"}
@@ -93,20 +94,17 @@
 		</form>
 		<div style="text-align: left; width: 50%; float:left;">
 			<input type="button" id="btn_hide_left" value="隐藏左边" class="btn_hide" onclick="hide_iframe_left()">
-			<select>
-				<option value="baidu">百度</option><!-- http://www.baidu.com/s?wd= -->
-				<option value="google">谷歌</option>
-				<option value="youdao">必应</option><!-- http://cn.bing.com/search?q= -->
-				<option value="sogou">搜狗</option><!-- https://www.sogou.com/web?query= -->
-				<option value="360">360</option><!-- https://www.so.com/s?q= -->
-				<option value="yahoo">雅虎</option><!-- https://search.yahoo.com/search?p= -->
-				<option value="acfun">ACFUN</option><!-- http://www.acfun.cn/search/?#query= -->
+			<select id="select_left" onchange="select_left_onchange()">
+				{volist name="sites" id="list"}
+				<option value="{$list.id}|{$list.url}"{eq name="$list.url" value="$url_left"} selected="true" {/eq}>{$list.name}</option>
+				{/volist}
 			</select>
 		</div>
 		<div style="text-align: right; width: 50%; float:right;">
-			<select>
-				<option value="baidu">百度</option>
-				<option value="google">谷歌</option>
+			<select id="select_right" onchange="select_right_onchange()">
+				{volist name="sites" id="list"}
+				<option value="{$list.id}|{$list.url}"{eq name="$list.url" value="$url_right"} selected="true" {/eq}>{$list.name}</option>
+				{/volist}
 			</select>
 			<input type="button" id="btn_hide_right" value="隐藏右边" class="btn_hide" onclick="hide_iframe_right()">
 		</div>
@@ -116,8 +114,8 @@
 			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		</head>
 		<div style="clear: both">
-			<iframe class="iframe-page" src="http://www.baidu.com/s?wd={$word}" width="50%" height="100%" onload="changeFrameHeight()" frameborder="0" border="0" framespacing="0"></iframe>
-			<iframe class="iframe-page" src="https://www.sogou.com/web?query={$word}" width="50%" height="100%" onload="changeFrameHeight()" frameborder="0" border="0" framespacing="0"></iframe>
+			<iframe id="iframe_left" class="iframe-page" src="{$url_left}{$word}" width="50%" height="100%" onload="changeFrameHeight()" frameborder="0" border="0" framespacing="0"></iframe>
+			<iframe id="iframe_right" class="iframe-page" src="{$url_right}{$word}" width="50%" height="100%" onload="changeFrameHeight()" frameborder="0" border="0" framespacing="0"></iframe>
 		</div>
 		</html>
 	</main>

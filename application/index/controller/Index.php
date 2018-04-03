@@ -2,16 +2,16 @@
 namespace app\index\controller;
 
 use app\common\controller\Base;
-use app\index\model\NaviSites;
+use app\index\model\NaviSite;
 use think\facade\View;
 
 class Index extends Base
 {
     public function index()
     {
-        $sites = NaviSites::field('name,site,status')
+        $sites = NaviSite::field('name,url,status')
             ->where('status','in','1,2')
-            ->where('site','<>', '')
+            ->where('url','<>', '')
             ->order('sort', 'asc')
             ->select();
 //        return $this->display($content);//$this->view->display($content);  \think\facade\View::display($content);

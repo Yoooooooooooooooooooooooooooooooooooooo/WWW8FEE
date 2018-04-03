@@ -69,9 +69,9 @@
 					{volist name="sites" id="list"}
 					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2" style="padding:7px">
 						{if $list.status == 2}
-							<div id="cheats_show_1" title="魂斗罗">用秘籍显示{$list.name}</div><div id="cheats_hide_1"><a href="{$list.site}">{$list.name}</a></div>
+							<div id="cheats_show_1" title="魂斗罗">用秘籍显示{$list.name}</div><div id="cheats_hide_1"><a href="{$list.url}" target="_blank">{$list.name}</a></div>
 						{else /}
-							<a href="{$list.site}">{$list.name}</a>
+							<a href="{$list.url}" target="_blank">{$list.name}</a>
 						{/if}
 					</div>
 					{/volist}

@@ -10,9 +10,12 @@
 // +----------------------------------------------------------------------
 
 Route::domain('s', function () {
-    Route::rule('w/:word', 'search/index/search')->pattern(['word' => '.*']);
-    Route::bind('search');
-});
+    Route::rule('w/:id_left/:id_right/:word', 'search/index/search')
+        ->pattern(['word' => '.*',
+            'id_left' => '\d*',
+            'id_right' => '\d*']);
+    Route::bind('search/index');
+    });
 
 Route::domain('manage', 'manage/index');
 
