@@ -23,6 +23,10 @@ Route::rule('user/login', 'user/index/login');
 
 Route::rule('user/register', 'user/index/register');
 
+Route::post('user/loginCheck', 'user/index/loginCheck');
+
+Route::post('user/registerCheck', 'user/index/registerCheck');
+
 return [
 
 ];
