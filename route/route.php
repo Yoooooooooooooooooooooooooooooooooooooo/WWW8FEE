@@ -19,6 +19,10 @@ Route::domain('s', function () {
 
 Route::domain('manage', 'manage/index');
 
+Route::rule('user/login', 'user/index/login');
+
+Route::rule('user/register', 'user/index/register');
+
 return [
 
 ];

@@ -1,0 +1,20 @@
+{extend name="common@base"}
+{block name="import"}
+{/block}
+{block name="body"}
+<main class="container">
+    <div class="col-lg-4" style="margin-top: 100px">
+        <form>
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" class="form-control" id="username" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-default">登录</button>
+        </form>
+    </div>
+</main>
+{/block}
