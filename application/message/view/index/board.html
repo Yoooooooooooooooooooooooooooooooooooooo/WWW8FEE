@@ -1,0 +1,47 @@
+{extend name="common@base"}
+{block name="import"}
+    <script type="text/javascript">
+        $(function(){
+            $("#btn_send").on('click', function () {
+                $.ajax({
+                    type: 'post',
+                    url: "{:url('/message/sendMessage')}",
+                    data: $('#form_send').serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        switch (data.status)
+                        {
+                            case -1:
+                            case 0:
+                                alert(data.message);
+                                break;
+                            case 1:
+                                window.location.href;
+                                break;
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+{/block}
+{block name="body"}
+    <main class="container">
+        <div class="col-lg-6" style="margin-top: 50px">
+            {volist id="list" name="messages"}
+                <div class="well well-sm">
+                    <div style="text-align: right;float:right;font-size: 0.8em">{$list.create_time}</div>
+                    <div style="font-size: 0.8em">{$list.nick}</div>
+                    <div style="margin-top: 10px">{$list.content}</div>
+                </div>
+            {/volist}
+            <form id="form_send" method="post">
+                <div class="form-group">
+                    <label for="content">说出来！</label>
+                    <input type="text" class="form-control" id="content" name="content" placeholder="请说出你内心的渴望">
+                </div>
+                <button type="submit" class="btn btn-default" style="float:right" id="btn_send">发送</button>
+            </form>
+        </div>
+    </main>
+{/block}
