@@ -19,15 +19,17 @@ use think\facade\View;
 
 class Index extends Base
 {
-    public function login()
+    public function login($goto="")
     {
         View::assign('title', "登录");
+        View::assign('goto', $goto);
         return View::fetch();
     }
 
-    public function register()
+    public function register($goto="")
     {
         View::assign('title', "注册");
+        View::assign('goto', $goto);
         return View::fetch();
     }
 
@@ -37,10 +39,18 @@ class Index extends Base
         {
             $data = Request::post();
             $rule = [
-                'uname|用户名'=>'require',
-                'pwd|密码'=>'require'
+                'uname|用户名'=>'require|alphaDash|length:6,15',
+                'pwd|密码'=>'require|length:6,16|alphaDash',
                 ];
-            $result = $this->validate($data, $rule);
+            $message = [
+                'uname.require' => '用户名或密码输入有误',
+                'uname.alphaDash' => '用户名或密码输入有误',
+                'uname.length' => '用户名或密码输入有误',
+                'pwd.require' => '用户名或密码输入有误',
+                'pwd.length' => '用户名或密码输入有误',
+                'pwd.alphaDash' => '用户名或密码输入有误',
+            ];
+            $result = $this->validate($data, $rule, $message);
             if(true !== $result)
             {
                 return ['status' => 0, 'message' => $result];
@@ -73,8 +83,7 @@ class Index extends Base
         if(Request::isAjax())
         {
             $data = Request::except('pwd_confirm', 'post');
-            $rule = 'app\common\validate\User';
-            $result = $this->validate($data, $rule);
+            $result = $this->validate($data, 'app\common\validate\User');
             if(true !== $result)
             {
                 return ['status' => -1, 'message' => $result];

@@ -53,8 +53,8 @@
 					<li class="nav-landscape"><a href="http://s.8f.ee">搜索</a></li>
 					<li class="nav-landscape"><a href="http://g.8f.ee">游戏</a></li>
 					<li class="nav-landscape"><a href="http://manage.8f.ee">管理</a></li>
+					<li class="nav-landscape"><a href="{if $Think.session.user_id}{:url('/message/board')}{else/}/user/login/message/board{/if}">留言板</a></li>
 				</ul>
-				<div style="float: right;"><a href="/user/login">登录</a></div>
 			</nav>
 
 			<main class="container-fluid">

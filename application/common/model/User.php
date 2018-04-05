@@ -22,10 +22,11 @@ class User extends Model
     protected $autoWriteTimestamp = true;
     protected $createTime = 'create_time';
     protected $updateTime = 'update_time';
+    protected $dataFormat = "Y-m-d H:i:s";
 
     public function getAccessAttr($value)
     {
-        $access = ['0'=>'普通用户','1'=>'塑料会员','2'=>'青铜会员','3'=>'白银会员','4'=>'黄金会员','5'=>'钻石会员'];
+        $access = ['0'=>'普通用户','1'=>'塑料会员','2'=>'青铜会员','3'=>'白银会员','4'=>'黄金会员','5'=>'钻石会员','-1'=>'管理员'];
         return $access[$value];
     }
 

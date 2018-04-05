@@ -19,13 +19,19 @@ Route::domain('s', function () {
 
 Route::domain('manage', 'manage/index');
 
-Route::rule('user/login', 'user/index/login');
+Route::rule('user/login/:goto?', 'user/index/login')
+    ->pattern(['goto' => '.*']);
 
-Route::rule('user/register', 'user/index/register');
+Route::rule('user/register/:goto?', 'user/index/register')
+    ->pattern(['goto' => '.*']);
 
 Route::post('user/loginCheck', 'user/index/loginCheck');
 
 Route::post('user/registerCheck', 'user/index/registerCheck');
+
+Route::rule('message/board', 'message/index/board');
+
+Route::rule('message/sendMessage', 'message/index/sendMessage');
 
 return [
 
